@@ -22,7 +22,7 @@ class FileStorage:
     def save(self):
         """to save to json files"""
         jsn_dic = {}
-        for key, value in FileStorage.__objects:
+        for key, value in FileStorage.__objects.items():
             jsn_dic[key] = value.to_dict()
         with open(FileStorage.__file_path, "w", encoding="UTF8") as f:
             json.dump(jsn_dic, f)
@@ -34,9 +34,9 @@ class FileStorage:
             with open(FileStorage.__file_path, encoding="UTF8") as f:
                 from models.base_model import BaseModel
                 p_obj = json.load(f)
-                for key, value in p_obj:
-                    objClassName = p_obj['__class__']
-                    objClassValue = eval[objClassName + "(**value)"]
+                for key, value in p_obj.items():
+                    objClassName = value["__class__"]
+                    objClassValue = eval(objClassName + "(**value)")
                     self.new(objClassValue)
         except IOError:
             pass
