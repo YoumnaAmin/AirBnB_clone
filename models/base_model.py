@@ -2,9 +2,9 @@
 """Base model script"""
 
 
-import json
 import uuid
 from datetime import datetime
+from models import storage
 
 
 class BaseModel:
@@ -25,6 +25,8 @@ class BaseModel:
             self.created_at = datetime.now()
         if "updated_at" not in kwargs.keys():
             self.updated_at = datetime.now()
+        if len(kwargs) == 0:
+            storage.new(self)
 
     def __str__(self):
         """to print in str format"""
@@ -35,6 +37,7 @@ class BaseModel:
     def save(self):
         """to update the creation time"""
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """to print in dictionary format"""
