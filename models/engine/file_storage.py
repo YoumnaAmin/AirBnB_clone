@@ -28,8 +28,7 @@ class FileStorage:
             json.dump(jsn_dic, f)
 
     def reload(self):
-        """to return the value of json string into dictinary
-        and then to python obj """
+        """to return the value of json string int python obj"""
         try:
             with open(FileStorage.__file_path, encoding="UTF8") as f:
                 from models.base_model import BaseModel
