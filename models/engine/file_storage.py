@@ -32,6 +32,7 @@ class FileStorage:
         try:
             with open(FileStorage.__file_path, encoding="UTF8") as f:
                 from models.base_model import BaseModel
+                from models.user import User
                 p_obj = json.load(f)
                 for key, value in p_obj.items():
                     objClassName = value["__class__"]

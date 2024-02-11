@@ -5,6 +5,7 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -15,7 +16,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg: str):
         """Create an instance of a class."""
 
-        dic_of_class = {'BaseModel': BaseModel}
+        dic_of_class = {'BaseModel': BaseModel, 'User': User}
 
         if arg in dic_of_class:
             cls = dic_of_class[arg]
@@ -35,7 +36,7 @@ class HBNBCommand(cmd.Cmd):
             return
         cls = arg[0]
 
-        if cls not in ['BaseModel']:
+        if cls not in ['BaseModel', 'User']:
             print("** class doesn't exist **")
             return
 
@@ -60,7 +61,7 @@ class HBNBCommand(cmd.Cmd):
             return
         cls = arg[0]
 
-        if cls not in ['BaseModel']:
+        if cls not in ['BaseModel', 'User']:
             print("** class doesn't exist **")
             return
 
@@ -82,7 +83,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        
+
         if args not in ['BaseModel']:
             print("** class doesn't exist **")
             return
