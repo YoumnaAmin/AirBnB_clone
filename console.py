@@ -46,9 +46,11 @@ class HBNBCommand(cmd.Cmd):
             return
         cls = arg[0]
 
-        if cls not in ['BaseModel', 'User', 'Place',
-                        'State', 'City', 'Amenity',
-                        'Review']:
+        if cls not in [
+                'BaseModel', 'User', 'Place',
+                'State', 'City', 'Amenity',
+                'Review'
+                ]:
             print("** class doesn't exist **")
             return
 
@@ -73,9 +75,11 @@ class HBNBCommand(cmd.Cmd):
             return
         cls = arg[0]
 
-        if cls not in ['BaseModel', 'User', 'Place',
-                        'State', 'City', 'Amenity',
-                        'Review']:
+        if cls not in [
+                'BaseModel', 'User', 'Place',
+                'State', 'City', 'Amenity',
+                'Review'
+                ]:
             print("** class doesn't exist **")
             return
 
