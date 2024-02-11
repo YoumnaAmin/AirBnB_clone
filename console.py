@@ -6,6 +6,11 @@ import cmd
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -16,7 +21,12 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg: str):
         """Create an instance of a class."""
 
-        dic_of_class = {'BaseModel': BaseModel, 'User': User}
+        dic_of_class = {
+                        'BaseModel': BaseModel, 'User': User,
+                        'State': State, 'City': City,
+                        'Amenity': Amenity, 'Place': Place,
+                        'Review': Review
+                        }
 
         if arg in dic_of_class:
             cls = dic_of_class[arg]
@@ -36,7 +46,9 @@ class HBNBCommand(cmd.Cmd):
             return
         cls = arg[0]
 
-        if cls not in ['BaseModel', 'User']:
+        if cls not in ['BaseModel', 'User', 'Place',
+                        'State', 'City', 'Amenity',
+                        'Review']:
             print("** class doesn't exist **")
             return
 
@@ -61,7 +73,9 @@ class HBNBCommand(cmd.Cmd):
             return
         cls = arg[0]
 
-        if cls not in ['BaseModel', 'User']:
+        if cls not in ['BaseModel', 'User', 'Place',
+                        'State', 'City', 'Amenity',
+                        'Review']:
             print("** class doesn't exist **")
             return
 
@@ -84,7 +98,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
 
-        if args not in ['BaseModel', 'User']:
+        if args not in ['BaseModel', 'User', 'Place',
+                        'State', 'City', 'Amenity',
+                        'Review']:
             print("** class doesn't exist **")
             return
         cls = eval(args + '()')
