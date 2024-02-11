@@ -98,19 +98,20 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, args):
         """to print instance in string format"""
-        if not args:
-            print("** class name missing **")
-            return
-
-        if args not in ['BaseModel', 'User', 'Place',
-                        'State', 'City', 'Amenity',
-                        'Review']:
-            print("** class doesn't exist **")
-            return
-        cls = eval(args + '()')
-        print('[\"', end="")
-        print(cls, end="")
-        print('\"]')
+        if args:
+            if args not in ['BaseModel', 'User', 'Place',
+                            'State', 'City', 'Amenity',
+                            'Review']:
+                print("** class doesn't exist **")
+                return
+            cls = eval(args + '()')
+            print('[\"', end="")
+            print(cls, end="")
+            print('\"]')
+        else:
+            print('[\"', end="")
+            print(storage.all(), end="")
+            print('\"]')
 
     def do_update(self, args):
         """update the attributes with new ones"""
