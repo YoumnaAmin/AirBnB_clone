@@ -34,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         class_name = arg[0]
-        
+
         # Check if class name exists
         if class_name not in ['BaseModel']:  # Add other class names as needed
             print("** class doesn't exist **")
@@ -47,13 +47,11 @@ class HBNBCommand(cmd.Cmd):
 
         instance_id = arg[1].replace("\"", "")
 
-        # Check if instance exists
         instance_key = class_name + "." + instance_id
-        if instance_key not in storage.all():  # Assuming storage.all() returns a dictionary of instances
+        if instance_key not in storage.all():
             print("** no instance found **")
             return
 
-        # Print the string representation of the instance
         print(storage.all()[instance_key])
 
     def do_quit(self, arg: str):
