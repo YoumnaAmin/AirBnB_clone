@@ -125,7 +125,7 @@ class HBNBCommand(cmd.Cmd):
                 'Review'
                 ]:
             print("** class doesn't exist **")
-            return 
+            return
         if len(arg) < 2:
             print("** instance id missing **")
             return
