@@ -112,6 +112,41 @@ class HBNBCommand(cmd.Cmd):
         print(cls, end="")
         print('\"]')
 
+    def do_update(self, args):
+        """update the attributes with new ones"""
+        arg = args.split()
+        if not args:
+            print("** class name missing **")
+            return
+        cls = arg[0]
+        if cls not in [
+                'BaseModel', 'User', 'Place',
+                'State', 'City', 'Amenity',
+                'Review'
+                ]:
+            print("** class doesn't exist **")
+            return 
+        if len(arg) < 2:
+            print("** instance id missing **")
+            return
+        ID = arg[1].replace("\"", "")
+        instance_key = cls + "." + ID
+        if instance_key not in storage.all():
+            print("** no instance found **")
+            return
+        if len(arg) < 3:
+            print("** attribute name missing **")
+            return
+        if len(arg) < 4:
+            print("** value missing **")
+            return
+
+        attr = arg[2]
+        val = arg[3]
+        Upd_inst = storage.all()[instance_key]
+        setattr(Upd_inst, attr, val)
+        Upd_inst.save()
+
     def do_quit(self, arg: str):
         """Quit command to exit the program
         """
