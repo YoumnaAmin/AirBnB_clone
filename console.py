@@ -77,6 +77,20 @@ class HBNBCommand(cmd.Cmd):
         storage.all().pop(instance_key)
         storage.save()
 
+    def do_all(self, args):
+        """to print instance in string format"""
+        if not args:
+            print("** class name missing **")
+            return
+        
+        if args not in ['BaseModel']:
+            print("** class doesn't exist **")
+            return
+        cls = eval(args + '()')
+        print('[\"', end="")
+        print(cls, end="")
+        print('\"]')
+
     def do_quit(self, arg: str):
         """Quit command to exit the program
         """
