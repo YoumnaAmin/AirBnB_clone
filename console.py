@@ -33,26 +33,49 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        class_name = arg[0]
+        cls = arg[0]
 
-        # Check if class name exists
-        if class_name not in ['BaseModel']:  # Add other class names as needed
+        if cls not in ['BaseModel']:
             print("** class doesn't exist **")
             return
 
-        # Check if id is missing
         if len(arg) < 2:
             print("** instance id missing **")
             return
 
-        instance_id = arg[1].replace("\"", "")
+        ID = arg[1].replace("\"", "")
 
-        instance_key = class_name + "." + instance_id
+        instance_key = cls + "." + ID
         if instance_key not in storage.all():
             print("** no instance found **")
             return
 
         print(storage.all()[instance_key])
+
+    def do_destroy(self, args):
+        """to delete an object(instance)"""
+        arg = args.split()
+        if not args:
+            print("** class name missing **")
+            return
+        cls = arg[0]
+
+        if cls not in ['BaseModel']:
+            print("** class doesn't exist **")
+            return
+
+        if len(arg) < 2:
+            print("** instance id missing **")
+            return
+
+        ID = arg[1].replace("\"", "")
+
+        instance_key = cls + "." + ID
+        if instance_key not in storage.all():
+            print("** no instance found **")
+            return
+        storage.all().pop(instance_key)
+        storage.save()
 
     def do_quit(self, arg: str):
         """Quit command to exit the program
