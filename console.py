@@ -84,7 +84,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
 
-        if args not in ['BaseModel']:
+        if args not in ['BaseModel', 'User']:
             print("** class doesn't exist **")
             return
         cls = eval(args + '()')
