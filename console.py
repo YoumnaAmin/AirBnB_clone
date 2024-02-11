@@ -109,8 +109,9 @@ class HBNBCommand(cmd.Cmd):
             print(cls, end="")
             print('\"]')
         else:
+            cls = eval(args + '()')
             print('[\"', end="")
-            print(storage.all(), end="")
+            print(cls, end="")
             print('\"]')
 
     def do_update(self, args):
