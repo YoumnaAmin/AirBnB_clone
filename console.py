@@ -149,24 +149,36 @@ class HBNBCommand(cmd.Cmd):
         setattr(Upd_inst, attr, val)
         Upd_inst.save()
 
+    def do_count(self, args):
+        """to count the instances"""
+        arg = args.split('.')
+        cls = arg[0]
+        if cls not in [
+                'BaseModel', 'User', 'Place',
+                'State', 'City', 'Amenity',
+                'Review'
+                ]:
+            print("** class doesn't exist **")
+            return
+        c = 0
+        for key, value in storage.all().items():
+            c += 1
+        print(c)
+
     def do_quit(self, arg: str):
-        """Quit command to exit the program
-        """
+        """Quit command to exit the program"""
         return True
 
     def do_EOF(self, arg):
-        """EOF command to exit the program
-        """
+        """EOF command to exit the program"""
         return True
 
     def do_help(self, arg: str):
-        """to get help
-        """
+        """to get help"""
         return super().do_help(arg)
 
     def emptyline(self):
-        """empty line doesn't affect anything
-        """
+        """empty line doesn't affect anything"""
         pass
 
 
